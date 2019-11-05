@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}
+    数据排名第四页
+{% endblock %}
+
+{% block table %}
+                   <table class="players_table" style="border-top:0px;">
+                        <tbody>
+                            <tr class="color_font1 bg_a">
+                            <td width="46">排名</td>
+                            <td width="142" class="left">球员</td>
+                            <td width="50">球队</td>
+                            <td>得分</td>
+                            <td>命中-出手</td>
+                            <td>命中率</td>
+                            <td>命中-三分</td>
+                            <td>三分命中率</td>
+                            <td>命中-罚球</td>
+                            <td>罚球命中率</td>
+                            <td width="50">场次</td>
+                            <td width="70">上场时间</td>
+                            </tr>
+
+                            {%for i in data %}
+                            <tr>
+                            <td width="46">{{i["ranking"]}}</td>
+                            <td width="142" class="left"><a href="#">{{i["name"]}}</a></td>
+                            <td width="50"><a href="#">{{i["team"]}}</a></td>
+                            <td class="bg_b">{{i["score"]}}</td>
+                            <td>{{i["hit-attemp"]}}</td>
+                            <td>{{i["hit_rate"]}}</td>
+                            <td>{{i["hit-3point"]}}</td>
+                            <td>{{i["3point_rate"]}}</td>
+                            <td>{{i["hit-penalty_shot"]}}</td>
+                            <td>{{i["penalty_rate"]}}</td>
+                            <td width="50">{{i["appearances"]}}</td>
+                            <td width="70">{{i["appearances_time"]}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+{% endblock %}
+
+{% block page %}
+    <a href="{{ url_for("page3") }}" >上一页</a>
+    <span class="page_num">第4页</span>
+    <a href="{{ url_for("page5") }}" >下一页</a>
+{% endblock %}
