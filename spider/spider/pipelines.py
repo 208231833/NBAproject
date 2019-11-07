@@ -44,7 +44,8 @@ class SpiderPipeline(object):
         elif isinstance(item,player_curreent_game):
             sql=r"""
             insert into  player_current_game values ('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')
-                                    """.format(item['name'],item['date'],item['enemy'],item['result'],item['time'],item['hit'],item['hit_percentage'],item['three'],item['three_percentage'],item['three_percentage'],item['free'],item['free_percentage'],item['rebound'],item['assist'],item['steal'],item['block'],item['fault'],item['foul'],item['scores'])
+                                    """.format(item['name'],item['date'],item['enemy'],item['result'],item['time'],item['hit'],item['hit_percentage'],item['three'],item['three_percentage'],item['free'],item['free_percentage'],item['rebound'],item['assist'],item['steal'],item['block'],item['fault'],item['foul'],item['scores'])
+            print(sql)
         elif isinstance(item,player_history_data):
             sql=r"""
                 insert into  player_history_data values ('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')
@@ -64,7 +65,7 @@ class SpiderPipeline(object):
             sql=r"""
                 insert into  team_info values ('{}','{}','{}','{}','{}','{}','{}')
             """.format(item['url'],item['name'],item['enter_time'],item['home'],item['web'],item['coach'],item['describes'])
-        print(sql)
+
         self.sqlinsert(sql)
         return item
 
