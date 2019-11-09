@@ -1,0 +1,121 @@
+
+<!doctype html>
+<>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<style type="text/css">
+	.header{
+		width: 1000px;
+		height: 200px;
+		background: #444;
+		border-bottom: 4px solid #FF0004;
+	}
+	.content{
+		width: 1000px;
+		height: 1000px;
+		background:#FF0004;
+	}
+	.footer{
+		width: 1000px;
+		height: 200px;
+		background: #37E016;
+	}
+	.h_sel1{
+		background: #7A2526;
+		height: 150px;
+		float:left;
+		width: 40%;
+	}
+	.pho{
+		height: 150px;
+		width: 20%;
+		background:#EDC107;
+		float: left;
+		font-family:adamina;
+		font-size: 30px;
+
+	}
+	.h_check1{
+	}
+	select{
+		margin-right: 15px;
+	}
+</style>
+</head>
+<body>
+<div class="header">
+
+	<div align="center">
+		<h2><p align="center" id="demo">球员对比表</p></h2>
+		<select>
+			<option value="3" selected>--赛季选择--</option>
+			<option value="1">季前赛</option>
+			<option value="2">季后赛</option>
+		</select>
+	</div>
+	<div class="h_sel1" align="center"><p>选择1号球员</p>
+	<div>
+        <form name="form1" method="get" action="/page1" id="myform1">
+        <select id="qd_msg1" name= "qd_msg1" style="width:100px; margin-left:15px;">
+            <option value="0" selected>请选择球队</option>
+            {% for i in range(length1) %}
+                <option value={{ data1[i][0] }}>{{ data1[i][0] }}</option>
+            {% endfor %}
+        </select>
+        <select id="qy_msg1" name= "qy_msg1"style="width:100px; margin-left:15px;" >
+            <option value="">请选择球员</option>
+            {% for i in range(length2) %}
+                <option value={{ data2[i][0] }}>{{ data2[i][0] }}</option>
+            {% endfor %}
+
+        </select>
+        </form>
+	</div>
+	</div>
+	<div class="pho"><p align="center">VS</p></div>
+	<div class="h_sel1" align="center"><p>选择二号球员</p>
+	<div class="h_check1">
+    <form name="form2" method="get" action="/page1" id="myform2">
+	<select  size="1" style="width: 100px;float: right;" id="qy_msg2" name="qy_msg2">
+		<option value="mc" style="align-content: center" selected>--球员选择--</option>
+            {% for i in range(length3) %}
+                <option value={{ data3[i][0] }}>{{ data3[i][0] }}</option>
+            {% endfor %}
+	</select></p>
+		<select  size="1" style="width: 100px;float: right;" id="qd_msg2" name="qd_msg2">
+		<option value="mc" style="align-content: center" selected>--球队选择--</option>
+            {% for i in range(length1) %}
+                <option value={{ data1[i][0] }}> {{ data1[i][0] }}</option>
+            {% endfor %}
+	</select>
+    </form>
+	</div>
+	</div>
+
+</div>
+<div class="content">
+    <h1><p id="demo">{{ url_for('result1') }}</p></h1>
+</div>
+<div class="footer">123</div>
+</body>
+<script>
+$(document).ready(function(){
+  $("#qd_msg1").change(function(){
+	   var value = $('#qd_msg1').val();
+       alert(value);
+       document.getElementById('myform1').submit();
+ })
+}
+);
+$(document).ready(function(){
+    $("#qd_msg2").change(function () {
+      var value = $('#qd_msg2').val();
+      alert(value);
+      document.getElementById('myform2').submit();
+  })
+})
+</script>
+</html>
