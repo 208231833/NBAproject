@@ -75,6 +75,7 @@ class draw_event():
         plt.plot(df.iloc[:,0],df.iloc[:,1])
         sio = BytesIO()
         plt.savefig(sio)
+        plt.savefig(sio, format='png')
         plt.close()
         return sio
     def draw_plot_interface(self,name,x,type):
@@ -208,7 +209,7 @@ class draw_event():
             self.normal_year2 = self.normal2[self.normal2['year'] == year]
             df = self.init_data(self.normal_year2)
             sio=self.radar(self.label, df, name, "季后赛", year)
-        data = base64.b64encode(sio.getvalue()).decode()
+        data = base64.encodebytes(sio.getvalue()).decode()
         return data
 
     """多个雷达图放在一起的效果"""
@@ -236,6 +237,7 @@ class draw_event():
         elif type==4:
             sio=self.radar_many(self.label,self.player_jihousai,(name1,name2),"季后赛","生涯")
         data = base64.b64encode(sio.getvalue()).decode()
+
         return data
     #多个球员的重合在一起的图
     def radar_many(self, label, df, name, istype, live):

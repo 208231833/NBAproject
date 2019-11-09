@@ -154,5 +154,44 @@ def search(shuru):
     url_lists = dataget(conn, ' select name from current_player_data where name like "%{}%" '.format(shuru))
     print(url_lists)
     destory(conn)
+
+
+def search_team_name():
+    """
+    查询所有球队的名字
+    :return:
+    """
+    conn = init()
+    url_lists = dataget(conn, "SELECT name from name_abbr_detail")
+    destory(conn)
+    return url_lists
+def search_name_from_team(team_name):
+    """
+    通过球队名字返回球员名字
+    :param name:
+    :return:
+    """
+    conn = init()
+    url_lists = dataget(conn, "select name from current_player_data where team = '{}'".format(team_name))
+    print(url_lists)
+    destory(conn)
+    return url_lists
+
+def year_get(name1,name2,type):
+        """
+        传入两个球员的名字返回两个球员共有的赛季,1是常规赛,2是季后赛
+        :param name1:
+        :param name2:
+        :param type:
+        :return:
+        """
+        # type 1 type 2
+        # 1季后赛，2是常规赛
+        conn = init()
+        url_lists = dataget(conn,
+                            'select distinct year from player_history_data where name = "{}" and type="{}" and year in(select year from player_history_data where name = "{}" and type="{}")'.format(name1,name2,type))
+        print(url_lists)
+        destory(conn)
+        return url_lists
 if __name__=="__main__":
-    search("詹姆斯")
+    search_name_from_team("火箭")
