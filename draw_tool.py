@@ -73,8 +73,8 @@ class draw_event():
         plt.tick_params(top=False, right=False, left=False, bottom=False)
         plt.grid(alpha=0.2)
         plt.plot(df.iloc[:,0],df.iloc[:,1])
-        plt.show()
         sio = BytesIO()
+        plt.savefig(sio)
         plt.savefig(sio, format='png')
         plt.close()
         return sio
@@ -105,7 +105,7 @@ class draw_event():
             df.iloc[:,1]=df.iloc[:, 1].apply(lambda x:float(x))
             print(df)
             sio = self.draw_plot1(df, self.item2, self.current_game_item[x], "{}最近的{}的变化".format(name, self.current_game_item[x]))
-        data = base64.encodebytes(sio.getvalue()).decode()
+        data = base64.b64encode(sio.getvalue()).decode()
         return data
     def draw_subplot_avg(self,type,name):
         """
@@ -155,9 +155,8 @@ class draw_event():
         plt.figtext(0.5, 1, name, ha='center', size=20)  # figtext加入文本框，前面两个数字代表位置
         plt.figtext(0.5, 0, '{}{}{}平均数据数据得出的能力图'.format(name,live,istype), ha='center', size=15, color='blue')
         plt.grid(True)
-        plt.show()
         sio = BytesIO()
-        plt.savefig(sio, format='png')
+        plt.savefig(sio)
         plt.close()
         return sio
     def init_data(self,df):
@@ -237,7 +236,8 @@ class draw_event():
             sio=self.radar_many(self.label,self.player_normal,(name1,name2),"常规赛","生涯")
         elif type==4:
             sio=self.radar_many(self.label,self.player_jihousai,(name1,name2),"季后赛","生涯")
-        data = base64.encodebytes(sio.getvalue()).decode()
+        data = base64.b64encode(sio.getvalue()).decode()
+
         return data
     #多个球员的重合在一起的图
     def radar_many(self, label, df, name, istype, live):
@@ -275,7 +275,6 @@ class draw_event():
         plt.figtext(0.5, 0, '{}{}{}{}能力对比的能力图'.format(name[0], name[0], istype,live), ha='center', size=15, color='blue')
         legend = plt.legend(name, loc=(0.94, 0.80), labelspacing=0.1)
         plt.grid(True)
-        plt.show()
         sio = BytesIO()
         plt.savefig(sio, format='png')
         plt.close()
