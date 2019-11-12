@@ -1,3 +1,42 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
+    <title>二级联动</title>
+    <script type="text/javascript">
+    var area = [
+        ['x', 'y', 'z'],   // 对应A
+        ['m', 'n'],        // 对应B
+    ];
+    function changeSelect() {
+        //获得项目下拉框的对象
+        var slt_project = document.form1.project;var slt_project = document.form1.project;
+        //获得升级区域下拉框的对象
+        var slt_area = document.form1.area;
+        //得到项目对应的升级区域数组
+        var project_area = area[slt_project.selectedIndex - 1];
+        //清空升级区域下拉框，仅留提示选项
+        slt_area.length = 1;
+        //将升级区域数组中的值填充到升级区域下拉框中
+        for(var i=0; i < project_area.length; i++){
+            slt_area[i+1] = new Option(project_area[i],project_area[i]);
+        }
+    }
+</script>
+</head>
+<body>
+    <form name="form1" method="post" action="">
+        <select id="project" onchange="changeSelect()" style="width:100px; margin-left:15px;">
+            <option value="0">请选择项目</option>
+            {% for i in range(length) %}
+                <option value={{ data[i][0] }}></option>
+            {% endfor %}
+        </select>
+        <select id="area" style="width:100px; margin-left:15px;">
+            <option value="">请选择区域</option>
+        </select>
+    </form>
+</body>
+</html>
 <!DOCTYPE html>
 <html >
 <head>

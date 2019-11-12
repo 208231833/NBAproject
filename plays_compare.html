@@ -1,4 +1,20 @@
 <!doctype html>
+<head>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<meta charset="utf-8">
+<title>球员信息对比表</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<style type="text/css">
+	.header{
+		width: 100%;
+		height: 300px;
+        border-bottom: 1px solid #444444;
+	}
+	.content{
+		width: 100%;
+		height: 1000px;
+<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -18,6 +34,9 @@
 	.footer{
 		width: 1000px;
 		height: 200px;
+
+	}
+	.h_sel1{
 		background: #37E016;
 	}
 	.h_sel1{
@@ -29,6 +48,368 @@
 	.pho{
 		height: 150px;
 		width: 20%;
+		float: left;
+		font-family:adamina;
+		font-size: 30px;
+
+	}
+	a{
+		text-decoration:none;
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+	li{
+			list-style:none;
+			float: left;
+			margin-top: 0px;
+			margin: 10px;
+	}
+    .play_msg{
+        width: 49%;
+        height: 100%;
+        border-right: 1px solid #444444;
+        float: left;
+    }
+    .play_msg1{
+        width: 49%;
+        height:100%;
+        border-left: 1px solid #444444;
+        float: right;
+    }
+</style>
+</head>
+<body>
+<div class="header">
+<h2><p align="center" id="demo">球员对比表</p></h2>
+	<div align="center" class="time_sel">
+		<select id="sj_sel" name="sj_sel">
+			<option value="3" selected>--赛季选择--</option>
+			<option value="常规赛">常规赛</option>
+			<option value="季后赛">季后赛</option>
+		</select>
+        <select id="nf_sel" name="nf_sel" style="width: 100px;height: 20px">
+			<option value="3" selected>--年份选择--</option>
+		</select>
+	</div>
+
+	<div class="h_sel1" align="center"><p>选择1号球员</p>
+	<div>
+        <form name="form1" method="get" action="/page" id="myform1">
+        <select id="qd_msg1" name= "qd_msg1" style="width:100px; margin-left:15px;">
+            <option value="0" selected>请选择球队</option>
+                <option value=魔术>魔术</option>
+
+                <option value=尼克斯>尼克斯</option>
+
+                <option value=爵士>爵士</option>
+
+                <option value=国王>国王</option>
+
+                <option value=老鹰>老鹰</option>
+
+                <option value=掘金>掘金</option>
+
+                <option value=雷霆>雷霆</option>
+
+                <option value=公牛>公牛</option>
+
+                <option value=骑士>骑士</option>
+
+                <option value=步行者>步行者</option>
+
+                <option value=黄蜂>黄蜂</option>
+
+                <option value=灰熊>灰熊</option>
+
+                <option value=活塞>活塞</option>
+
+                <option value=凯尔特人>凯尔特人</option>
+
+                <option value=湖人>湖人</option>
+
+                <option value=勇士>勇士</option>
+
+                <option value=马刺>马刺</option>
+
+                <option value=快船>快船</option>
+
+                <option value=猛龙>猛龙</option>
+
+                <option value=76人>76人</option>
+
+                <option value=开拓者>开拓者</option>
+
+                <option value=太阳>太阳</option>
+
+                <option value=森林狼>森林狼</option>
+
+                <option value=独行侠>独行侠</option>
+
+                <option value=奇才>奇才</option>
+
+                <option value=热火>热火</option>
+
+                <option value=鹈鹕>鹈鹕</option>
+
+                <option value=火箭>火箭</option>
+
+                <option value=篮网>篮网</option>
+
+                <option value=雄鹿>雄鹿</option>
+
+        </select>
+        <select id="qy_msg1" name= "qy_msg1"style="width:100px; margin-left:15px;" >
+            <option value="">请选择球员</option>
+        </select>
+            <div id="pho1"></div>
+        </form>
+	</div>
+	</div>
+	<div class="pho"><p align="center"><button id="commit" name="确认" style="width: 80px;height: 30px;">VS</button></p></div>
+
+	<div class="h_sel1" align="center"><p>选择2号球员</p>
+	<div>
+        <form name="form2" method="post" action="/page" id="myform2">
+        <select id="qd_msg2" name= "qd_msg2" style="width:100px; margin-left:15px;">
+            <option value="0" selected>请选择球队</option>
+                <option value=魔术>魔术</option>
+
+                <option value=尼克斯>尼克斯</option>
+
+                <option value=爵士>爵士</option>
+
+                <option value=国王>国王</option>
+
+                <option value=老鹰>老鹰</option>
+
+                <option value=掘金>掘金</option>
+
+                <option value=雷霆>雷霆</option>
+
+                <option value=公牛>公牛</option>
+
+                <option value=骑士>骑士</option>
+
+                <option value=步行者>步行者</option>
+
+                <option value=黄蜂>黄蜂</option>
+
+                <option value=灰熊>灰熊</option>
+
+                <option value=活塞>活塞</option>
+
+                <option value=凯尔特人>凯尔特人</option>
+
+                <option value=湖人>湖人</option>
+
+                <option value=勇士>勇士</option>
+
+                <option value=马刺>马刺</option>
+
+                <option value=快船>快船</option>
+
+                <option value=猛龙>猛龙</option>
+
+                <option value=76人>76人</option>
+
+                <option value=开拓者>开拓者</option>
+
+                <option value=太阳>太阳</option>
+
+                <option value=森林狼>森林狼</option>
+
+                <option value=独行侠>独行侠</option>
+
+                <option value=奇才>奇才</option>
+
+                <option value=热火>热火</option>
+
+                <option value=鹈鹕>鹈鹕</option>
+
+                <option value=火箭>火箭</option>
+
+                <option value=篮网>篮网</option>
+
+                <option value=雄鹿>雄鹿</option>
+        </select>
+        <select id="qy_msg2" name= "qy_msg2"style="width:100px; margin-left:15px;" >
+            <option value="">请选择球员</option>
+        </select>
+        </form>
+        <div id="pho2"></div>
+	</div>
+	</div>
+
+</div>
+<div class="content">
+    <div class="play_msg" id="play1" >
+    </div>
+    <div class="play_msg1" id="play2" >
+    </div>
+</div>
+<div class="footer" >123</div>
+</body>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#qy_msg1").change(function () {
+            var data=$("#qy_msg1").val();
+            $.ajax({
+                url:"http://127.0.0.1:5000/",
+                data:data,
+                type:"post",
+                success:function (data) {
+                    dispaly1(data);
+                },
+                error:function () {
+                    alert(2222)
+                }
+            })
+        })
+    });
+        $(document).ready(function () {
+        $("#qy_msg2").change(function () {
+            var data=$("#qy_msg2").val();
+            $.ajax({
+                url:"http://127.0.0.1:5000/",
+                data:data,
+                type:"post",
+                success:function (data) {
+                    dispaly2(data);
+                },
+                error:function () {
+                    alert(2222)
+                }
+            })
+        })
+    });
+    $(document).ready(function () {
+        $("#commit").click(function () {
+            var play1=$("#qy_msg1").val();
+            var play2=$("#qy_msg2").val();
+            var sj=$("#sj_sel").val();
+            data="";
+            data=play1+" "+play2+" "+sj;
+            $.ajax({
+                url:"http://127.0.0.1:5000/",
+                data:data,
+                type:"post",
+                success:function (data) {
+                    addselect3(data);
+                    alert("1111");
+                },
+                error:function () {
+                    alert(2222)
+                }
+            })
+        })
+    });
+$(document).ready(function(){
+  $("#qd_msg1").change(function(){
+	   var data = $('#qd_msg1').val();
+      $.ajax({
+          url:"http://127.0.0.1:5000/",
+          data:data,
+          type:"post",
+          success:function (data) {
+              addselect1(data);
+          },
+          error:function () {
+              alert("error")
+          }
+      })
+ })
+}
+);
+
+$(document).ready(function(){
+  $("#qd_msg2").change(function(){
+	   var data = $('#qd_msg2').val();
+      $.ajax({
+          url:"http://127.0.0.1:5000/",
+          data:data,
+          type:"post",
+          success:function (data) {
+              addselect2(data);
+          },
+          error:function () {
+              alert("error")
+          }
+      })
+ })
+}
+);
+function dispaly1(data) {
+    var number = data.split(" ");
+    //刷新前清空里面内容
+    $("#pho1").empty();
+    var src=number[0];
+    alert(src)
+    $("#pho1").append("<img src=\""+src+"\">");
+    alert("hhh1");
+    alert(number.length);
+    div1=document.getElementById('play1');
+    $("#play1").empty();
+    var tab='<table border=1 width=500px align="center">';
+    for(var i=1;i<number.length-1;i++){
+        tab+="<tr><td>"+number[i]+"</td></tr>";
+    }
+    tab+="</table>"
+    div1.innerHTML=tab;
+}
+function dispaly2(data) {
+    var number = data.split(" ");
+    //刷新前清空里面内容
+    $("#pho2").empty();
+    var src=number[0];
+    alert(src)
+    $("#pho2").append("<img src=\""+src+"\">");
+    alert("hhh1");
+    alert(number.length);
+    div1=document.getElementById('play2');
+    $("#play2").empty();
+    var tab='<table border=1 width=500px align="center">';
+    for(var i=1;i<number.length-1;i++){
+        tab+="<tr><td>"+number[i]+"</td></tr>";
+    }
+    tab+="</table>";
+    div1.innerHTML=tab;
+}
+function addselect1(data) {
+    var number = data.split(" ");
+    var select = document.getElementById("qy_msg1");
+    $("#qy_msg1").empty();
+    for (var i=0;i<number.length;i++){
+        var newItem=document.createElement("option");
+        var newItemText=document.createTextNode(number[i]);
+        newItem.appendChild(newItemText);
+        select.appendChild(newItem);
+    }
+}
+function addselect2(data) {
+    number=data.split(" ");
+    var select = document.getElementById("qy_msg2");
+    $("#qy_msg2").empty();
+    for (var i=0;i<number.length;i++){
+        var newItem=document.createElement("option");
+        var newItemText=document.createTextNode(number[i]);
+        newItem.appendChild(newItemText);
+        select.appendChild(newItem);
+    }
+}
+function addselect3(data) {
+    number=data.split(" ");
+    var select = document.getElementById("nf_sel");
+    $("#nf_sel").empty();
+    for(var i=0;i<number.length;i++){
+        var newItem =document.createElement("option");
+        var newItemText=document.createTextNode(number[i]);
+        newItem.appendChild(newItemText);
+        select.appendChild(newItem);
+    }
+}
+</script>
 		background:#EDC107;
 		float: left;
 		font-family:adamina;
