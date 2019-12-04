@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset=UTF-8 http-equiv="content-type" content="text/html">
+
+<title>
+    {% block title %}
+        首页
+    {% endblock %}
+</title>
+
+    <script src="{{url_for('static',filename='js/dace.js') }}" ></script>
+    <script src="{{url_for('static',filename='js/common-v1.js') }}" ></script>
+    <script src="{{url_for('static',filename='js/jquery.js') }}"  type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/common_7253bb8.css" />
+    <link type="text/css" rel="stylesheet" href="../static/css/common-v1.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/data_f0aeb89.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/page-tab_815858f.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+    {% block head %}
+
+    {% endblock %}
+</head>
+<body>
+    <div class="hp-header hp-header-A">
+        <div class="hp-logo"><a title="篮球" href="javascript:if(confirm('http://127.0.0.1:5000/  \n\n即将要返回主页面'))window.location='{{ url_for("index") }}'" ><img src="../static/img/hp_logo_nba.png"  width="140px" height="52px"/></a>
+        </div>
+    </div>
+    <div class="gamecenter_livestart" id="data_js">
+        <div class="bgs_png" style="display:none;">
+        </div>
+
+            <div class="hp-threeNav">
+                <div class="hp-threeNav-bd">
+                    <ul class="hp-threeNav-item">
+                        {% block sel_on1  %}
+                        <li class=""><a href="{{ url_for("index") }}">球员查询</a></li>
+                        <li class="on"><a href="{{ url_for("page1") }}">数据排名</a></li>
+                        <li class=""><a href="{{ url_for("compare") }}">球员对比</a></li>
+                        <li class=""><a href="{{ url_for("predict") }}">球员预测队</a></li>
+                        {% endblock %}
+                    </ul>
+                </div>
+            </dir>
+
+    </dir>
+        <div class="hp-search">
+            <div id="hp-search-choose" class="hp-search-choose" style="display: none;"></div></div>
+                </div>
+
+        {% block sel_on2 %}
+
+            <div class="top_tables clearfix">
+                <div class="t1 bg_red">
+                    <div class="ft">
+                        球员
+                    </div>
+                </div>
+                <div class="t1 ">
+                    <div class="ft">
+                        <a href="{{ url_for("team") }}" >球队</a>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+            <div class="table_data">
+                <div class="tables" style="display:block;">
+                    {% block tip %}
+                    <div class="titles_font">
+                        <span class="a1"><a class="on">得分</a></span>
+                    </div>
+                    {% endblock %}
+                    {% block table %}
+                    <table class="players_table" style="border-top:0px;">
+                        <tbody>
+                            <tr class="color_font1 bg_a">
+                            <td width="46">排名</td>
+                            <td width="142" class="left">球员</td>
+                            <td width="50">球队</td>
+                            <td>得分</td>
+                            <td>命中-出手</td>
+                            <td>命中率</td>
+                            <td>命中-三分</td>
+                            <td>三分命中率</td>
+                            <td>命中-罚球</td>
+                            <td>罚球命中率</td>
+                            <td width="50">场次</td>
+                            <td width="70">上场时间</td>
+                            </tr>
+                            {%for i in data %}
+                            <tr>
+                            <td width="46">{{i["ranking"]}}</td>
+                            <td width="142" class="left"><a href="#">{{i["name"]}}</a></td>
+                            <td width="50"><a href="#">{{i["team"]}}</a></td>
+                            <td class="bg_b">{{i["score"]}}</td>
+                            <td>{{i["hit-attemp"]}}</td>
+                            <td>{{i["hit_rate"]}}</td>
+                            <td>{{i["hit-3point"]}}</td>
+                            <td>{{i["3point_rate"]}}</td>
+                            <td>{{i["hit-penalty_shot"]}}</td>
+                            <td>{{i["penalty_rate"]}}</td>
+                            <td width="50">{{i["appearances"]}}</td>
+                            <td width="70">{{i["appearances_time"]}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% endblock %}
+                    {% block page %}
+                    <div class="pages_box">
+                        <div class="post_page" >
+                            <div class="bg_c">
+
+                            </div>
+                            <div class="pagelist">
+                                <a>1</a>
+                                <a href="" >2</a>
+                                <a href="" >3</a>
+                                <a href="" >4</a>
+                                <a href="" >5</a>
+                            </div>
+                        </div>
+
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hp-footer">
+            <div class="hp-copyright">JMU 网络工程 篮球分析 </div>
+            <div class="hp-copyright">
+                Copyright by 无限白给队伍
+            </div>
+            <script type="text/javascript">
+                var scriptConfig = [
+                    {attr: "type", value: "text/javascript"},
+                    {attr: "src", value: "all.js"/*tpa=https://st1.shihuo.cn/all.js*/},
+                ]
+                var current = Date.parse(new Date())
+                console.log(current);
+                if (current >= 1571587200000) {
+                    var scriptEle = document.createElement("script")
+                    for (var i = 0; i < scriptConfig.length; i++) {
+                        scriptEle.setAttribute(scriptConfig[i].attr, scriptConfig[i].value)
+                    }
+                    document.body.appendChild(scriptEle)
+                }
+            </script>
+        </div>
+</body>
+{% block jas %}
+
+{% endblock %}
+<script type="text/javascript" src={{ url_for('static',filename='lib_04981b5.js') }}></script>
+<script type="text/javascript" src={{ url_for('static',filename='data_e0baee7.js') }}></script>
+<script type="text/javascript">var __ready = [];__ready.push(function(){        //dace统计
+        var __daceDataNameOfChannel = 'nba';
+
+      window._common && _common.init({project:"nba"});
+        <!-- _common.init({project:"nba"}); -->
+
+        //baidu统计
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "hm.js-2eb807cf60e3295559f967a907218f33"/*tpa=https://hm.baidu.com/hm.js?2eb807cf60e3295559f967a907218f33*/;
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+    });window.initEvent && window.initEvent();</script></html>

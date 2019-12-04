@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}
+    球队预测
+{% endblock %}
+{% block sel_on1 %}
+    <li class=""><a href="{{ url_for("index") }}">球员查询</a></li>
+    <li class=""><a href="{{ url_for("page1") }}">数据排名</a></li>
+    <li class=""><a href="{{ url_for("compare") }}">球员对比</a></li>
+    <li class="on"><a href="{{ url_for("predict") }}">球员预测队</a></li>
+{% endblock %}
+{% block sel_on2 %}
+
+            <div class="top_tables clearfix">
+                <div class="t1 bg_red">
+                    <div class="ft">
+                        下场比赛预测
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+{% block tip %}
+
+{% endblock %}
+{% block table %}
+                   <table class="players_table" style="border-top:0px;">
+                        <tbody>
+                            <tr class="color_font1 bg_a">
+                            <td width="46">场次</td>
+                            <td width="142" class="left">日期</td>
+                            <td width="50">时间</td>
+                            <td>主场队</td>
+                            <td>客场队</td>
+                            <td>？？</td>
+                            <td>主场胜</td>
+                            </tr>
+                        {% for i in range(lenth) %}
+                            <tr class="color_font1 bg_a">
+                            <td width="46">{{ data[i][0] }}</td>
+                            <td width="142" class="left">{{ data[i][1] }}</td>
+                            <td width="50">{{ data[i][2] }}</td>
+                            <td>{{ data[i][3] }}</td>
+                            <td>{{ data[i][4] }}</td>
+                            <td>{{ data[i][5] }}</td>
+                            {% if data[i][6]=='Null' %}
+                                <td>Unknown</td>
+                            {% endif %}
+                            {% if data[i][6]!='Null'%}
+                            <td>{{ data[i][6] }}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+{% endblock %}

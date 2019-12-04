@@ -2,45 +2,84 @@
 {% block title %}
     首页
 {% endblock %}
+{% block head %}
+    <script>
+    $(function() {
+         $("#search").keyup(
+             function() {
+                $("#box").empty();
+                 var shuru = $(this).val().trim();
+                  if (shuru != null && shuru != "") {
+                    $.ajax({
+                        url:"{{ url_for('api_upload') }}",
+                        type:"post",
+                        data: shuru,
+                        dataType: 'json',
+                        processData:false,
+                        contentType:false,
+                        success:function(result){
+                            if (result==null||result == ""){
+
+                                 $("#box").css("display", "none");
+                            }
+                            else {
+                                            //遍历结果集
+                                    $.each(result, function(index, data) {
+
+                                                //alert(index+""+data.message)
+                                                //显示在隐藏div上面
+                                                $("#box").append(
+                                                        "<div>" +"<a href="+"/player/?name="+data+">"+data+"</a>"+ "</div>");
+                                                $("#box").css("display", "block");
+
+                                            });
+
+
+
+                        }
+                        },
+                        error:function(e){
+                            alert("error");
+                        }
+                    })
+    }
+             })
+    }
+             );
+    function search() {
+        var value=document.getElementById("search").value();
+        alert(value);
+
+    }
+    </script>
+{% endblock %}
 
 {% block sel_on1 %}
     <li class="on"><a href="{{ url_for("index") }}">球员查询</a></li>
     <li class=""><a href="{{ url_for("page1") }}">数据排名</a></li>
-    <li class=""><a href="#">球员对比</a></li>
-    <li class=""><a href="#">球员预测队</a></li>
+    <li class=""><a href="{{ url_for("compare") }}">球员对比</a></li>
+    <li class=""><a href="{{ url_for("predict") }}">球员预测队</a></li>
 {% endblock %}
 
 {% block sel_on2 %}
-    <div style="height: 250px" >
-        <div style=" text-align: center;height: 60%">
+    <div style="height: 600px" >
+        <div style=" text-align: center;height: 20%">
             <img alt="" style="margin: 0 auto;" src="../static/img/login.jpg" align="center"/>
         </div>
         <div class="form-group" style="text-align: center;">
-            <input class="form-field" type="text" placeholder="输入球星名字" align="center">
-            <span><input type="submit" name="uname" value="查询" ></span>
+            <input class="form-field" id="search" type="text" placeholder="输入球星名字" align="center">
+            <span><input type="button" name="uname" value="查询"onclick="search()"></span>
+        </div>
+        <div id="box" style="width: 930px;border: 1px solid #c3c3c3; display: none; >
+
         </div>
     </div>
 {% endblock %}
-
 
 {% block tip %}
-    <div style="height: 300px;color: red" >
-
-
-        </div>
-    </div>
 {% endblock %}
-
 {% block table %}
-    <div class="1">
-
-
-    </div>
-
 {% endblock %}
-{% block page %}
-    <div class="2">
 
 
-    </div>
-{% endblock %}
+
